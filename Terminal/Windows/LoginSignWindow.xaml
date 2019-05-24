@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:Terminal.Windows"
         mc:Ignorable="d"
         Title="LoginSignWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-        
-    </Grid>
+    <Border>
+        <DockPanel>
+            
+        </DockPanel>
+    </Border>
 </Window>

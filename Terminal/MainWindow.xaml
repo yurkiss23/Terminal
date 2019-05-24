@@ -7,11 +7,29 @@
         xmlns:local="clr-namespace:Terminal"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="PressStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,6,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Yellow"/>
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                    <Setter Property="BorderBrush" Value="Yellow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Border>
         <DockPanel>
             <StackPanel DockPanel.Dock="Top" Height="50" Orientation="Horizontal" Margin="5,5,5,0">
                 <Label x:Name="tbAccount" Content="Account" Width="350" MouseLeftButtonDown="mlbd_Click"
-                       Cursor="Hand"/>
+                       Cursor="Hand" Style="{StaticResource PressStyle}"/>
                 <Label x:Name="tbMoney" Content="Money" Width="200"/>
                 <Label x:Name="tbTime" Width="200" Content="{Binding Source={x:Static sys:DateTime.Now}}"/>
             </StackPanel>
@@ -32,6 +50,5 @@
                 <Button x:Name="Chat" Content="CallToOperator" Grid.Column="2" Grid.Row="0" Click="Chat_Click"/>
             </Grid>
         </DockPanel>
-
     </Border>
 </Window>
