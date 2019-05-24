@@ -24,5 +24,10 @@ namespace Terminal
         {
             InitializeComponent();
         }
+
+        private void mlbd_Click(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("!!!");
+        }
     }
 }
