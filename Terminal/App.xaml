@@ -19,12 +19,6 @@
             <Setter Property="Foreground" Value="Yellow"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <!--<Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="Yellow"/>
-                    <Setter Property="Foreground" Value="Gray"/>
-                </Trigger>
-            </Style.Triggers>-->
         </Style>
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="Gray"/>
@@ -34,6 +28,48 @@
             <Setter Property="VerticalContentAlignment" Value="Top"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0,0,6,0"/>
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="DockPanel.Dock" Value="Top"/>
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="5,5,5,0"/>
+        </Style>
+        <Style x:Key="LabelTextblockStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="Yellow"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="232"/>
+        </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="232"/>
+        </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Yellow"/>
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                    <Setter Property="BorderBrush" Value="Yellow"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
     </Application.Resources>
 </Application>

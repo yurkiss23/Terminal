@@ -23,5 +23,15 @@ namespace Terminal.Windows
         {
             InitializeComponent();
         }
+
+        private void BtnLog_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("login");
+        }
+
+        private void BtnSign_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("signup");
+        }
     }
 }

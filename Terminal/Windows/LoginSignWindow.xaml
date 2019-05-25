@@ -5,10 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Terminal.Windows"
         mc:Ignorable="d"
-        Title="LoginSignWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Login/Signin" Height="500" Width="284" WindowStartupLocation="CenterScreen">
+    <!--<Window.Resources>
+        <Style x:Key="PressStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,6,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Yellow"/>
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                    <Setter Property="BorderBrush" Value="Yellow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>-->
     <Border>
-        <DockPanel>
-            
-        </DockPanel>
+        <TabControl Background="Gray">
+            <TabItem x:Name="tabLogin" Header="Login" Width="122">
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" Height="Auto ">
+                    <Label x:Name="tbLogin" Style="{StaticResource LabelTextblockStyle}" Content="Email/Phone:"/>
+                    <TextBox x:Name="txtLogin"/>
+                    <Label x:Name="tbLoginPass" Style="{StaticResource LabelTextblockStyle}" Content="Password:"/>
+                    <PasswordBox x:Name="txtLoginPass"/>
+                    <Button x:Name="btnLog" Content="OK" Width="150" Height="60" Margin="10" Click="BtnLog_Click" />
+                </StackPanel>
+            </TabItem>
+            <TabItem x:Name="tabSignin" Header="Signin" Width="122">
+                <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" Height="Auto">
+                    <Label x:Name="tbFname" Style="{StaticResource LabelTextblockStyle}" Content="FirstName:"/>
+                    <TextBox x:Name="txtFname"/>
+                    <Label x:Name="tbLname" Style="{StaticResource LabelTextblockStyle}" Content="LastName:"/>
+                    <TextBox x:Name="txtLname"/>
+                    <Label x:Name="tbPhone" Style="{StaticResource LabelTextblockStyle}" Content="Phone:"/>
+                    <TextBox x:Name="txtPhone"/>
+                    <Label x:Name="tbEmail" Style="{StaticResource LabelTextblockStyle}" Content="Email:"/>
+                    <TextBox x:Name="txtEmail"/>
+                    <Label x:Name="tbSignPass" Style="{StaticResource LabelTextblockStyle}" Content="Password:"/>
+                    <PasswordBox x:Name="txtSignPass"/>
+                    <Button x:Name="btnSign" Content="OK" Width="150" Height="60" Margin="10" Click="BtnSign_Click"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <!--<DockPanel>
+            <StackPanel>
+                <Label x:Name="lblLogin" Content="Login" Style="{StaticResource PressStyle}" Width="116"
+                       Cursor="Hand" MouseLeftButtonDown="mlbdLogin_Click"/>
+                <Label x:Name="lblSignup" Content="Signup" Style="{StaticResource PressStyle}" Width="116"
+                       Cursor="Hand" MouseLeftButtonDown="mlbdLogin_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" Height="Auto ">
+                <Label x:Name="tbLogin" Style="{StaticResource LabelTextblockStyle}" Content="Email/Phone:"/>
+                <TextBox x:Name="txtLogin"/>
+                <Label x:Name="tbPass" Style="{StaticResource LabelTextblockStyle}" Content="Password:"/>
+                <PasswordBox x:Name="txtPass"/>
+                <Button x:Name="btnLogSign" Content="OK" Width="150" Height="70" Margin="10"/>
+            </StackPanel>
+        </DockPanel>-->
     </Border>
 </Window>
