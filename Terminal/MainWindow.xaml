@@ -3,10 +3,52 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Terminal"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="PressStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Background" Value="Yellow"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,6,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Yellow"/>
+                    <Setter Property="Background" Value="Gray"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                    <Setter Property="BorderBrush" Value="Yellow"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Border>
+        <DockPanel>
+            <StackPanel>
+                <Label x:Name="tbAccount" Content="Account" Width="350" MouseLeftButtonDown="mlbd_Click"
+                       Cursor="Hand" Style="{StaticResource PressStyle}"/>
+                <Label x:Name="tbMoney" Content="[Money]" Width="192"/>
+                <Label x:Name="tbTime" Width="200" Content="{Binding Source={x:Static sys:DateTime.Now}}"/>
+            </StackPanel>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="btnCashIn" Content="CashIn" Grid.Column="0" Grid.Row="0" Click="BtnCashIn_Click"/>
+                <Button x:Name="btnCashSend" Content="CashSend" Grid.Column="1" Grid.Row="0" Click="BtnCashSend_Click"/>
+                <Button x:Name="btnCashOut" Content="CashOut" Grid.Column="0" Grid.Row="1" Click="BtnCashOut_Click"/>
+                <Button x:Name="btnArch" Content="Archive" Grid.Column="1" Grid.Row="1" Click="BtnArch_Click"/>
+                <Button x:Name="Chat" Content="CallToOperator" Grid.Column="2" Grid.Row="0" Click="Chat_Click"/>
+            </Grid>
+        </DockPanel>
+    </Border>
 </Window>
