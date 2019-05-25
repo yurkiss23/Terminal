@@ -57,5 +57,10 @@ namespace Terminal
             ChatWindow chat = new ChatWindow();
             chat.ShowDialog();
         }
+
+        private void Calc_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("currency converter");
+        }
     }
 }
