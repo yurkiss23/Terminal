@@ -24,7 +24,32 @@ namespace Terminal
         public MainWindow()
         {
             InitializeComponent();
+
+            //ThemeChange();
+            List<string> themesList = new List<string> { "YellowGrayTheme", "VioletTheme" };
+            cbTheme.SelectionChanged += SelectionChanged_Themes;
+            //cbTheme.Items.Clear();
+            cbTheme.ItemsSource = themesList;
+            //cbTheme.SelectedItem = "YellowGrayTheme";
         }
+
+        private void SelectionChanged_Themes(object sender, SelectionChangedEventArgs e)
+        {
+            string style = cbTheme.SelectedItem as string;
+            var uri = new Uri("Themes/" + style + ".xaml", UriKind.Relative);
+            ResourceDictionary dict = Application.LoadComponent(uri) as ResourceDictionary;
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(dict);
+        }
+
+        //private void ThemeChange()
+        //{
+        //    string style = "Themes/YellowGrayTheme";
+        //    var uri = new Uri(style + ".xaml", UriKind.Relative);
+        //    ResourceDictionary dict = Application.LoadComponent(uri) as ResourceDictionary;
+        //    Application.Current.Resources.Clear();
+        //    Application.Current.Resources.MergedDictionaries.Add(dict);
+        //}
 
         private void mlbd_Click(object sender, MouseButtonEventArgs e)
         {

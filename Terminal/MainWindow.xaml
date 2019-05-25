@@ -25,15 +25,20 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Border>
+    <Border Style="{DynamicResource BorderStyle}">
         <DockPanel>
-            <StackPanel>
+            <StackPanel Style="{DynamicResource StackPanelStyle}">
                 <Label x:Name="tbAccount" Content="Account" Width="350" MouseLeftButtonDown="mlbd_Click"
                        Cursor="Hand" Style="{StaticResource PressStyle}"/>
-                <Label x:Name="tbMoney" Content="[Money]" Width="192"/>
-                <Label x:Name="tbTime" Width="200" Content="{Binding Source={x:Static sys:DateTime.Now}}"/>
+                <Label x:Name="tbMoney" Content="[Money]" Width="192" Style="{DynamicResource LabelStyle}"/>
+                <Label x:Name="tbTime" Width="200" Content="{Binding Source={x:Static sys:DateTime.Now}}"
+                       Style="{DynamicResource LabelStyle}"/>
             </StackPanel>
-            <Grid DockPanel.Dock="Bottom">
+            <StackPanel DockPanel.Dock="Bottom">
+                <ComboBox x:Name="cbTheme" SelectionChanged="SelectionChanged_Themes"
+                          Style="{DynamicResource ComboBoxStyle}" Background="Yellow" Foreground="Gray"/>
+            </StackPanel>
+            <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -43,12 +48,18 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="btnCashIn" Content="CashIn" Grid.Column="0" Grid.Row="0" Click="BtnCashIn_Click"/>
-                <Button x:Name="btnCashSend" Content="CashSend" Grid.Column="1" Grid.Row="0" Click="BtnCashSend_Click"/>
-                <Button x:Name="btnCashOut" Content="CashOut" Grid.Column="0" Grid.Row="1" Click="BtnCashOut_Click"/>
-                <Button x:Name="btnArch" Content="Archive" Grid.Column="1" Grid.Row="1" Click="BtnArch_Click"/>
-                <Button x:Name="btnChat" Content="CallToOperator" Grid.Column="2" Grid.Row="0" Click="Chat_Click"/>
-                <Button x:Name="btnCurConvert" Content="CurrencyCalc" Grid.Column="2" Grid.Row="1" Click="Calc_Click"/>
+                <Button x:Name="btnCashIn" Content="CashIn" Grid.Column="0" Grid.Row="0"
+                        Click="BtnCashIn_Click" Style="{DynamicResource ButtonStyle}"/>
+                <Button x:Name="btnCashSend" Content="CashSend" Grid.Column="1" Grid.Row="0"
+                        Click="BtnCashSend_Click" Style="{DynamicResource ButtonStyle}"/>
+                <Button x:Name="btnCashOut" Content="CashOut" Grid.Column="0" Grid.Row="1"
+                        Click="BtnCashOut_Click" Style="{DynamicResource ButtonStyle}"/>
+                <Button x:Name="btnArch" Content="Archive" Grid.Column="1" Grid.Row="1"
+                        Click="BtnArch_Click" Style="{DynamicResource ButtonStyle}"/>
+                <Button x:Name="btnChat" Content="CallToOperator" Grid.Column="2" Grid.Row="0"
+                        Click="Chat_Click" Style="{DynamicResource ButtonStyle}"/>
+                <Button x:Name="btnCurConvert" Content="CurrencyCalc" Grid.Column="2" Grid.Row="1"
+                        Click="Calc_Click" Style="{DynamicResource ButtonStyle}"/>
             </Grid>
         </DockPanel>
     </Border>
