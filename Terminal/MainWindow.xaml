@@ -30,7 +30,7 @@
             <StackPanel>
                 <Label x:Name="tbAccount" Content="Account" Width="350" MouseLeftButtonDown="mlbd_Click"
                        Cursor="Hand" Style="{StaticResource PressStyle}"/>
-                <Label x:Name="tbMoney" Content="Money" Width="192"/>
+                <Label x:Name="tbMoney" Content="[Money]" Width="192"/>
                 <Label x:Name="tbTime" Width="200" Content="{Binding Source={x:Static sys:DateTime.Now}}"/>
             </StackPanel>
             <Grid DockPanel.Dock="Bottom">

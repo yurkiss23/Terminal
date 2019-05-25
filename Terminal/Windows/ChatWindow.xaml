@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Terminal.Windows"
         mc:Ignorable="d"
         Title="ChatWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Border>
         
-    </Grid>
+    </Border>
 </Window>
