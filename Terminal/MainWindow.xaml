@@ -7,9 +7,9 @@
         xmlns:local="clr-namespace:Terminal"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
+    <!--<Window.Resources>
         <Style x:Key="PressStyle" TargetType="Label">
-            <Setter Property="Foreground" Value="Gray"/>
+            <Setter Property="Foreground" Value="Green"/>
             <Setter Property="Background" Value="Yellow"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -17,26 +17,31 @@
             <Setter Property="Margin" Value="0,0,6,0"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Foreground" Value="Yellow"/>
-                    <Setter Property="Background" Value="Gray"/>
-                    <Setter Property="BorderThickness" Value="5"/>
-                    <Setter Property="BorderBrush" Value="Yellow"/>
+                    <Setter Property="Foreground" Value="DarkRed"/>
+                    <Setter Property="Background" Value="LightCoral"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="BorderBrush" Value="DarkRed"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
-    </Window.Resources>
+    </Window.Resources>-->
     <Border Style="{DynamicResource BorderStyle}">
         <DockPanel>
             <StackPanel Style="{DynamicResource StackPanelStyle}">
                 <Label x:Name="tbAccount" Content="Account" Width="350" MouseLeftButtonDown="mlbd_Click"
-                       Cursor="Hand" Style="{StaticResource PressStyle}"/>
+                       Cursor="Hand" Style="{DynamicResource LblPressStyle}"/>
                 <Label x:Name="tbMoney" Content="[Money]" Width="192" Style="{DynamicResource LabelStyle}"/>
                 <Label x:Name="tbTime" Width="200" Content="{Binding Source={x:Static sys:DateTime.Now}}"
                        Style="{DynamicResource LabelStyle}"/>
             </StackPanel>
             <StackPanel DockPanel.Dock="Bottom">
                 <ComboBox x:Name="cbTheme" SelectionChanged="SelectionChanged_Themes"
-                          Style="{DynamicResource ComboBoxStyle}" Background="Yellow" Foreground="Gray"/>
+                          SelectedItem="YellowGrayTheme" Style="{DynamicResource ComboBoxStyle}">
+                    <ComboBoxItem x:Name="cbiYGTheme" Style="{DynamicResource YGTComboBoxItemStyle}"
+                                  Content="YellowGrayTheme" IsSelected="True"/>
+                    <ComboBoxItem x:Name="cbiPTheme" Style="{DynamicResource PTComboBoxItemStyle}"
+                                  Content="PurpleTheme"/>
+                </ComboBox>
             </StackPanel>
             <Grid DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
@@ -48,18 +53,48 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="btnCashIn" Content="CashIn" Grid.Column="0" Grid.Row="0"
-                        Click="BtnCashIn_Click" Style="{DynamicResource ButtonStyle}"/>
-                <Button x:Name="btnCashSend" Content="CashSend" Grid.Column="1" Grid.Row="0"
-                        Click="BtnCashSend_Click" Style="{DynamicResource ButtonStyle}"/>
-                <Button x:Name="btnCashOut" Content="CashOut" Grid.Column="0" Grid.Row="1"
-                        Click="BtnCashOut_Click" Style="{DynamicResource ButtonStyle}"/>
-                <Button x:Name="btnArch" Content="Archive" Grid.Column="1" Grid.Row="1"
-                        Click="BtnArch_Click" Style="{DynamicResource ButtonStyle}"/>
-                <Button x:Name="btnChat" Content="CallToOperator" Grid.Column="2" Grid.Row="0"
-                        Click="Chat_Click" Style="{DynamicResource ButtonStyle}"/>
-                <Button x:Name="btnCurConvert" Content="CurrencyCalc" Grid.Column="2" Grid.Row="1"
-                        Click="Calc_Click" Style="{DynamicResource ButtonStyle}"/>
+                <Button x:Name="btnCashIn" Grid.Column="0" Grid.Row="0"
+                        Click="BtnCashIn_Click" Style="{DynamicResource ButtonStyle}">
+                    <StackPanel>
+                        <Image x:Name="imgCashIn" Style="{DynamicResource ImageBtnStyle}"/>
+                        <TextBlock Text="CashIn" Style="{DynamicResource TextBlockBtnStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnCashSend" Grid.Column="1" Grid.Row="0"
+                        Click="BtnCashSend_Click" Style="{DynamicResource ButtonStyle}">
+                    <StackPanel>
+                        <Image x:Name="imgCashSend" Style="{DynamicResource ImageBtnStyle}"/>
+                        <TextBlock Text="CashSend" Style="{DynamicResource TextBlockBtnStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnCashOut" Grid.Column="0" Grid.Row="1"
+                        Click="BtnCashOut_Click" Style="{DynamicResource ButtonStyle}">
+                    <StackPanel>
+                        <Image x:Name="imgCashOut" Style="{DynamicResource ImageBtnStyle}"/>
+                        <TextBlock Text="CashOut" Style="{DynamicResource TextBlockBtnStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnArch" Grid.Column="1" Grid.Row="1"
+                        Click="BtnArch_Click" Style="{DynamicResource ButtonStyle}">
+                    <StackPanel>
+                        <Image x:Name="imgArch" Style="{DynamicResource ImageBtnStyle}"/>
+                        <TextBlock Text="Archive" Style="{DynamicResource TextBlockBtnStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnChat" Grid.Column="2" Grid.Row="0"
+                        Click="Chat_Click" Style="{DynamicResource ButtonStyle}">
+                    <StackPanel>
+                        <Image x:Name="imgChat" Style="{DynamicResource ImageBtnStyle}"/>
+                        <TextBlock Text="CallToOperator" Style="{DynamicResource TextBlockBtnStyle}"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="btnCurConvert" Grid.Column="2" Grid.Row="1"
+                        Click="Calc_Click" Style="{DynamicResource ButtonStyle}">
+                    <StackPanel>
+                        <Image x:Name="imgCalc" Style="{DynamicResource ImageBtnStyle}"/>
+                        <TextBlock Text="CurrencyCalc" Style="{DynamicResource TextBlockBtnStyle}"/>
+                    </StackPanel>
+                </Button>
             </Grid>
         </DockPanel>
     </Border>

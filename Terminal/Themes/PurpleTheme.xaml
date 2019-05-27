@@ -2,24 +2,29 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Terminal.Themes">
     <Style x:Key="BorderStyle" TargetType="Border">
-        <Setter Property="Background" Value="Gray"/>
-        <Setter Property="BorderBrush" Value="Yellow"/>
+        <Setter Property="Background" Value="WhiteSmoke"/>
+        <Setter Property="BorderBrush" Value="Purple"/>
         <Setter Property="BorderThickness" Value="10"/>
         <Setter Property="CornerRadius" Value="5"/>
     </Style>
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="Width" Value="200"/>
         <Setter Property="Height" Value="120"/>
-        <Setter Property="Background" Value="Gray"/>
-        <Setter Property="BorderBrush" Value="Yellow"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="Foreground" Value="Yellow"/>
+        <Setter Property="Background" Value="AntiqueWhite"/>
+        <!--<Setter Property="BorderBrush" Value="Yellow"/>-->
+        <!--<Setter Property="BorderThickness" Value="2"/>-->
+        <Setter Property="Foreground" Value="Purple"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Gray"/>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style x:Key="LabelStyle" TargetType="Label">
-        <Setter Property="Foreground" Value="Gray"/>
-        <Setter Property="Background" Value="Yellow"/>
+        <Setter Property="Foreground" Value="DarkRed"/>
+        <Setter Property="Background" Value="LightCoral"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
@@ -27,7 +32,7 @@
         <Setter Property="Margin" Value="0,0,6,0"/>
     </Style>
     <Style x:Key="LblPressStyle" TargetType="Label">
-        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="Foreground" Value="Green"/>
         <Setter Property="Background" Value="Yellow"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Bold"/>
@@ -35,15 +40,15 @@
         <Setter Property="Margin" Value="0,0,6,0"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="Yellow"/>
-                <Setter Property="Background" Value="Gray"/>
-                <Setter Property="BorderThickness" Value="5"/>
-                <Setter Property="BorderBrush" Value="Yellow"/>
+                <Setter Property="Foreground" Value="DarkRed"/>
+                <Setter Property="Background" Value="LightCoral"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderBrush" Value="DarkRed"/>
             </Trigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="LabelTextblockStyle" TargetType="Label">
-        <Setter Property="Foreground" Value="Yellow"/>
+        <Setter Property="Foreground" Value="Purple"/>
         <Setter Property="FontSize" Value="18"/>
     </Style>
     <Style x:Key="StackPanelStyle" TargetType="StackPanel">
@@ -52,54 +57,63 @@
         <Setter Property="Height" Value="50"/>
         <Setter Property="Margin" Value="5,5,5,0"/>
     </Style>
+    <Style x:Key="TextBlockBtnStyle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="IndianRed"/>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="Gray" ShadowDepth="2" BlurRadius="0"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="TextBoxStyle" TargetType="TextBox">
-        <Setter Property="Foreground" Value="Gray"/>
-        <Setter Property="Background" Value="Yellow"/>
+        <Setter Property="Foreground" Value="DarkRed"/>
+        <Setter Property="Background" Value="AntiqueWhite"/>
         <Setter Property="FontSize" Value="20"/>
-        <Setter Property="FontWeight" Value="Bold"/>
+        <!--<Setter Property="FontWeight" Value="Bold"/>-->
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="DarkRed"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Width" Value="232"/>
     </Style>
-    <Style x:Key="TextBlockBtnStyle" TargetType="TextBlock">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Foreground" Value="Yellow"/>
-    </Style>
     <Style x:Key="PassBoxStyle" TargetType="PasswordBox">
-        <Setter Property="Foreground" Value="Gray"/>
-        <Setter Property="Background" Value="Yellow"/>
+        <Setter Property="Foreground" Value="DarkRed"/>
+        <Setter Property="Background" Value="AntiqueWhite"/>
         <Setter Property="FontSize" Value="20"/>
-        <Setter Property="FontWeight" Value="Bold"/>
+        <!--<Setter Property="FontWeight" Value="Bold"/>-->
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="DarkRed"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Width" Value="232"/>
     </Style>
     <Style x:Key="TabControlStyle" TargetType="TabControl">
-        <Setter Property="Background" Value="Gray"/>
+        <Setter Property="Background" Value="AntiqueWhite"/>
     </Style>
     <Style x:Key="TabItemStyle" TargetType="TabItem">
-        <Setter Property="Foreground" Value="Gray"/>
-        <Setter Property="Background" Value="Yellow"/>
+        <Setter Property="Foreground" Value="DarkRed"/>
+        <Setter Property="Background" Value="LightCoral"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Foreground" Value="Yellow"/>
-                <Setter Property="Background" Value="Gray"/>
-                <Setter Property="BorderThickness" Value="5"/>
-                <Setter Property="BorderBrush" Value="Yellow"/>
+                <Setter Property="Foreground" Value="DarkRed"/>
+                <Setter Property="Background" Value="LightCoral"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="BorderBrush" Value="DarkRed"/>
             </Trigger>
         </Style.Triggers>
     </Style>
-    <Style x:Key="ComboBoxStyle" TargetType="{x:Type ComboBox}">
-        <Setter Property="Foreground" Value="Gray"/>
-        <Setter Property="Background" Value="Yellow"/>
+    <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+        <Setter Property="Foreground" Value="Purple"/>
+        <Setter Property="Background" Value="AntiqueWhite"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="MaxWidth" Value="300"/>
     </Style>
-    <Style x:Key="YGTComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
-        <Setter Property="Foreground" Value="Yellow"/>
-        <Setter Property="Background" Value="Gray"/>
+    <Style x:Key="PTComboBoxItemStyle" TargetType="ComboBoxItem">
+        <Setter Property="Foreground" Value="Purple"/>
+        <Setter Property="Background" Value="AntiqueWhite"/>
     </Style>
     <Style x:Key="ImageBtnStyle" TargetType="Image">
         <Setter Property="Width" Value="60"/>

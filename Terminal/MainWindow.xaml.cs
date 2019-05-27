@@ -26,16 +26,16 @@ namespace Terminal
             InitializeComponent();
 
             //ThemeChange();
-            List<string> themesList = new List<string> { "YellowGrayTheme", "VioletTheme" };
+            //List<string> themesList = new List<string> { "YellowGrayTheme", "VioletTheme" };
             cbTheme.SelectionChanged += SelectionChanged_Themes;
-            //cbTheme.Items.Clear();
-            cbTheme.ItemsSource = themesList;
-            //cbTheme.SelectedItem = "YellowGrayTheme";
+            ////cbTheme.Items.Clear();
+            //cbTheme.ItemsSource = themesList;
+            //cbTheme.SelectedItem
         }
 
         private void SelectionChanged_Themes(object sender, SelectionChangedEventArgs e)
         {
-            string style = cbTheme.SelectedItem as string;
+            string style = (cbTheme.SelectedItem as ComboBoxItem).Content.ToString();
             var uri = new Uri("Themes/" + style + ".xaml", UriKind.Relative);
             ResourceDictionary dict = Application.LoadComponent(uri) as ResourceDictionary;
             Application.Current.Resources.Clear();
