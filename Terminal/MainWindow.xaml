@@ -48,6 +48,7 @@
                 <Button x:Name="btnCashOut" Content="CashOut" Grid.Column="0" Grid.Row="1" Click="BtnCashOut_Click"/>
                 <Button x:Name="btnArch" Content="Archive" Grid.Column="1" Grid.Row="1" Click="BtnArch_Click"/>
                 <Button x:Name="Chat" Content="CallToOperator" Grid.Column="2" Grid.Row="0" Click="Chat_Click"/>
+                <Button x:Name="Convert" Content="Converter" Grid.Column="2" Grid.Row="2" Click="Converter_Click"/>
             </Grid>
         </DockPanel>
     </Border>

@@ -1,0 +1,18 @@
+﻿<Window x:Class="Terminal.Windows.KR"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Terminal.Windows"
+        mc:Ignorable="d"
+        Title="KR" Height="347.826" Width="492.391">
+    <Grid>
+        <TextBox x:Name="number" Margin="72,96,0,182" TextChanged="number_TextChanged" Width="206"/>
+        <ComboBox x:Name="currency" Margin="323,100,77,190" SelectionChanged="currency_SelectionChanged">
+            <ComboBoxItem x:Name="USD" Content="USD"/>
+            <ComboBoxItem x:Name="EUR"  Content="EUR"/>
+            <ComboBoxItem x:Name="RUB"  Content="RUB"/>
+        </ComboBox>
+        <Label x:Name="result" HorizontalContentAlignment="Center" Margin="111,192,151,63" FontSize="20"/>
+    </Grid>
+</Window>

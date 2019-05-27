@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Terminal.Entities
 {
-    public class User
+    public class Admin
     {
         public int Id { get; set; }
-        public int Money { get; set; }
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string Phone { get; set; }

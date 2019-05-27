@@ -57,5 +57,11 @@ namespace Terminal
             ChatWindow chat = new ChatWindow();
             chat.ShowDialog();
         }
+
+        private void Converter_Click(object sender, RoutedEventArgs e)
+        {
+            KR conv = new KR();
+            conv.ShowDialog();
+        }
     }
 }
