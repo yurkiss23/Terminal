@@ -87,5 +87,11 @@ namespace Terminal
         {
             MessageBox.Show("currency converter");
         }
+
+        private void Convert_Click(object sender, RoutedEventArgs e)
+        {
+            KR cnv = new KR();
+            cnv.ShowDialog();
+        }
     }
 }

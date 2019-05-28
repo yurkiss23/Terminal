@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="KR" Height="347.826" Width="492.391">
     <Grid>
-        <TextBox x:Name="number" Margin="72,96,0,182" TextChanged="number_TextChanged" Width="206"/>
+        <TextBox x:Name="number" Margin="74,94,204,184" TextChanged="number_TextChanged" Width="206"/>
         <ComboBox x:Name="currency" Margin="323,100,77,190" SelectionChanged="currency_SelectionChanged">
             <ComboBoxItem x:Name="USD" Content="USD"/>
             <ComboBoxItem x:Name="EUR"  Content="EUR"/>
             <ComboBoxItem x:Name="RUB"  Content="RUB"/>
         </ComboBox>
-        <Label x:Name="result" HorizontalContentAlignment="Center" Margin="111,192,151,63" FontSize="20"/>
+        <Label x:Name="result" HorizontalContentAlignment="Center" Margin="115,199,114,44" FontSize="20"/>
     </Grid>
 </Window>
