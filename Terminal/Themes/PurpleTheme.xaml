@@ -87,6 +87,7 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Width" Value="232"/>
+        <Setter Property="MaxLength" Value="8"/>
     </Style>
     <Style x:Key="TabControlStyle" TargetType="TabControl">
         <Setter Property="Background" Value="AntiqueWhite"/>

@@ -41,15 +41,20 @@
                 <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" Height="Auto"
                             Style="{DynamicResource StackPanelStyle}">
                     <Label x:Name="tbFname" Style="{StaticResource LabelTextblockStyle}" Content="FirstName:"/>
-                    <TextBox x:Name="txtFname" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox x:Name="txtFname" Style="{DynamicResource TextBoxStyle}"
+                             LostFocus="LostFocus_Fname"/>
                     <Label x:Name="tbLname" Style="{StaticResource LabelTextblockStyle}" Content="LastName:"/>
-                    <TextBox x:Name="txtLname" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox x:Name="txtLname" Style="{DynamicResource TextBoxStyle}"
+                             LostFocus="LostFocus_Lname"/>
                     <Label x:Name="tbPhone" Style="{StaticResource LabelTextblockStyle}" Content="Phone:"/>
-                    <TextBox x:Name="txtPhone" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox x:Name="txtPhone" Style="{DynamicResource TextBoxStyle}"
+                             LostFocus="LostFocus_Phone"/>
                     <Label x:Name="tbEmail" Style="{StaticResource LabelTextblockStyle}" Content="Email:"/>
-                    <TextBox x:Name="txtEmail" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox x:Name="txtEmail" Style="{DynamicResource TextBoxStyle}"
+                             LostFocus="LostFocus_Email"/>
                     <Label x:Name="tbSignPass" Style="{StaticResource LabelTextblockStyle}" Content="Password:"/>
-                    <PasswordBox x:Name="txtSignPass" Style="{DynamicResource PassBoxStyle}"/>
+                    <PasswordBox x:Name="txtSignPass" Style="{DynamicResource PassBoxStyle}"
+                                 LostFocus="LostFocus_Pass"/>
                     <Button x:Name="btnSign" Content="OK" Width="150" Height="60" Margin="10"
                             Click="BtnSign_Click" Style="{DynamicResource ButtonStyle}"/>
                 </StackPanel>
