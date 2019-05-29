@@ -58,35 +58,35 @@
                 <Button x:Name="btnCashIn" Grid.Column="0" Grid.Row="0"
                         Click="BtnCashIn_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
-                        <Image x:Name="imgCashIn" Style="{DynamicResource ImageBtnStyle}"/>
+                        <Image x:Name="imgCashIn" Source="Images/cashin.png" Style="{DynamicResource ImageBtnStyle}"/>
                         <TextBlock Text="CashIn" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
                 <Button x:Name="btnCashSend" Grid.Column="1" Grid.Row="0"
                         Click="BtnCashSend_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
-                        <Image x:Name="imgCashSend" Style="{DynamicResource ImageBtnStyle}"/>
+                        <Image x:Name="imgCashSend"  Source="Images/cashsend.png" Style="{DynamicResource ImageBtnStyle}"/>
                         <TextBlock Text="CashSend" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
                 <Button x:Name="btnCashOut" Grid.Column="0" Grid.Row="1"
                         Click="BtnCashOut_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
-                        <Image x:Name="imgCashOut" Style="{DynamicResource ImageBtnStyle}"/>
+                        <Image x:Name="imgCashOut" Source="Images/cashout.png" Style="{DynamicResource ImageBtnStyle}"/>
                         <TextBlock Text="CashOut" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
                 <Button x:Name="btnArch" Grid.Column="1" Grid.Row="1"
                         Click="BtnArch_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
-                        <Image x:Name="imgArch" Style="{DynamicResource ImageBtnStyle}"/>
+                        <Image x:Name="imgArch"  Source="Images/archive.png" Style="{DynamicResource ImageBtnStyle}"/>
                         <TextBlock Text="Archive" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
                 <Button x:Name="btnChat" Grid.Column="2" Grid.Row="0"
                         Click="Chat_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
-                        <Image x:Name="imgChat" Style="{DynamicResource ImageBtnStyle}"/>
+                        <Image x:Name="imgChat"  Source="Images/callto.png" Style="{DynamicResource ImageBtnStyle}"/>
                         <TextBlock Text="CallToOperator" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
@@ -100,7 +100,7 @@
                 <Button x:Name="Convert" Grid.Column="2" Grid.Row="1"
                         Click="Convert_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
-                        <Image x:Name="Convert_img" Style="{DynamicResource ImageBtnStyle}"/>
+                        <Image x:Name="Convert_img"  Source="Images/converter.png" Style="{DynamicResource ImageBtnStyle}"/>
                         <TextBlock Text="Converter" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
