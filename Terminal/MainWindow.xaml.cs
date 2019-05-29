@@ -54,12 +54,12 @@ namespace Terminal
                 {
                     case "user":
                         UserID = (loginSign.txtLogin.Text.Contains("@")) ?
-                            _context.Users.Where(u => u.Email == loginSign.txtLogin.Text).First().Id :
+                            _context.Users.Where(u => u.Email == loginSign.txtLogin.Text).First().Id:
                             _context.Users.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
                         break;
                     case "admin":
                         UserID = (loginSign.txtLogin.Text.Contains("@")) ?
-                            _context.Admins.Where(u => u.Email == loginSign.txtLogin.Text).First().Id :
+                            _context.Admins.Where(u => u.Email == loginSign.txtLogin.Text).First().Id:
                             _context.Admins.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
                         break;
                     case null:
