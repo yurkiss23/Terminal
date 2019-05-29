@@ -84,6 +84,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\ViewUserModel.cs" />
     <Compile Include="Windows\ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
     </Compile>
@@ -92,6 +93,12 @@
     </Compile>
     <Compile Include="Windows\LoginSignWindow.xaml.cs">
       <DependentUpon>LoginSignWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UpdateNameWindow.xaml.cs">
+      <DependentUpon>UpdateNameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UpdateWindow.xaml.cs">
+      <DependentUpon>UpdateWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +129,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\LoginSignWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UpdateNameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UpdateWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -90,13 +90,6 @@
                         <TextBlock Text="CallToOperator" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
-                <!--<Button x:Name="btnCurConvert" Grid.Column="2" Grid.Row="1"
-                        Click="Calc_Click" Style="{DynamicResource ButtonStyle}">
-                    <StackPanel>
-                        <Image x:Name="imgCalc" Style="{DynamicResource ImageBtnStyle}"/>
-                        <TextBlock Text="CurrencyCalc" Style="{DynamicResource TextBlockBtnStyle}"/>
-                    </StackPanel>
-                </Button>-->
                 <Button x:Name="Convert" Grid.Column="2" Grid.Row="1"
                         Click="Convert_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
@@ -107,12 +100,29 @@
                 <!--cashIn-->
                 
                 <!--admin-->
-                <ListView x:Name="lwUsers" Style="{DynamicResource ListViewStyle}" Grid.RowSpan="2">
-                    
-                </ListView>
+                <DataGrid x:Name="dgUsers" Style="{DynamicResource DataGridStyle}" Grid.RowSpan="2"
+                          Visibility="Hidden" SelectionChanged="SelectionChanged_User"/>
+                <StackPanel x:Name="spUser" Grid.Column="1" Grid.ColumnSpan="2" Visibility="Hidden">
+                    <Label x:Name="lblName" Content="[Name]" Style="{DynamicResource LabelTextblockStyle}"
+                           FontWeight="Bold"/>
+                    <Label x:Name="lblPhone" Content="[Phone]" Style="{DynamicResource LabelTextblockStyle}"
+                           FontWeight="Bold"/>
+                    <Label x:Name="lblEmail" Content="[Email]" Style="{DynamicResource LabelTextblockStyle}"
+                           FontWeight="Bold"/>
+                    <Label x:Name="lblMoney" Content="[Money]" Style="{DynamicResource LabelTextblockStyle}"
+                           FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel x:Name="spUserBtn" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"
+                            Visibility="Hidden" Orientation="Horizontal">
+                    <Button x:Name="btnDeleteUser" Content="Delete" Style="{DynamicResource ButtonStyle}"
+                            Click="BtnDeleteUser_Click" Margin="10,10,5,20" Width="150"/>
+                    <Button x:Name="btnUpdateUser" Content="Update" Style="{DynamicResource ButtonStyle}"
+                            Click="BtnUpdateUser_Click" Margin="10,10,5,20" Width="150"/>
+                    <Button x:Name="btnReLoad" Content="Reload" Style="{DynamicResource ButtonStyle}"
+                            Click="BtnReload_Click" Margin="10,10,0,20" Width="150"/>
+                </StackPanel>
                 <!--<Label x:Name="tbTitleLayout" Grid.Column="1" Style="{DynamicResource LabelLayoutStyle}"
                        Visibility="Hidden"/>-->
-                
             </Grid>
         </DockPanel>
     </Border>
