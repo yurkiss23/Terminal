@@ -43,7 +43,7 @@
                                   Content="PurpleTheme"/>
                 </ComboBox>
             </StackPanel>
-            <Grid DockPanel.Dock="Top">
+            <Grid x:Name="gridStart" DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
@@ -107,7 +107,11 @@
                 <!--cashIn-->
                 
                 <!--admin-->
-                <Label x:Name="tbTitleLayout" Grid.Column="1" Style="{DynamicResource LabelLayoutStyle}"/>
+                <ListView x:Name="lwUsers" Style="{DynamicResource ListViewStyle}" Grid.RowSpan="2">
+                    
+                </ListView>
+                <!--<Label x:Name="tbTitleLayout" Grid.Column="1" Style="{DynamicResource LabelLayoutStyle}"
+                       Visibility="Hidden"/>-->
                 
             </Grid>
         </DockPanel>

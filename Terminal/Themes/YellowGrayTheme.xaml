@@ -113,4 +113,12 @@
         <Setter Property="Width" Value="60"/>
         <Setter Property="Source" Value="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png"/>
     </Style>
+    <Style x:Key="ListViewStyle" TargetType="ListView">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Foreground" Value="Yellow"/>
+        <Setter Property="Background" Value="Gray"/>
+        <!--<Setter Property="Opacity" Value="0"/>-->
+        <!--<Setter Property="BorderThickness" Value="2"/>-->
+        <Setter Property="BorderBrush" Value="Gray"/>
+    </Style>
 </ResourceDictionary>

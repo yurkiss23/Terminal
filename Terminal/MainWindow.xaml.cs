@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Terminal.Entities;
+using Terminal.Models;
 using Terminal.Windows;
 
 namespace Terminal
@@ -89,7 +90,18 @@ namespace Terminal
             Admin tmp = _context.Admins.Where(a => a.Id == UserID).First();
             tbAccount.Content = tmp.Fname + " " + tmp.Lname;
             tbMoney.Content = "admin";
-
+            btnCashIn.Visibility = btnCashOut.Visibility = btnCashSend.Visibility
+                = btnChat.Visibility = btnArch.Visibility = Convert.Visibility = Visibility.Hidden;
+            List<UserModel> userList = new List<UserModel>(
+                _context.Users.Select(u => new UserModel()
+                {
+                    Id = u.Id,
+                    Money = u.Money,
+                    Fname = u.Fname,
+                    Lname = u.Lname,
+                    Phone = u.Phone,
+                    Email = u.Email
+                }).ToList());
         }
 
         private void BtnCashIn_Click(object sender, RoutedEventArgs e)

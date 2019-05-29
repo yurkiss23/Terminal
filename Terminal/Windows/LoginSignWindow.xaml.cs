@@ -197,12 +197,21 @@ namespace Terminal.Windows
                     Email = txtEmail.Text,
                     Password = txtSignPass.Password
                 });
-                //_context.SaveChanges();
+                _context.SaveChanges();
+                tabLogin.Focus();
+                txtLogin.Text = txtEmail.Text;
+                txtLoginPass.Password = txtSignPass.Password;
+                MessageBox.Show(txtLogin.Text);
+                MessageBox.Show(txtLoginPass.Password.ToString());
+                //btnLog.Focus();
+                
+                BtnLog_Click(null, null);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            this.DialogResult = true;
         }
 
         private void LostFocus_Fname(object sender, RoutedEventArgs e)
