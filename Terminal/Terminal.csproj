@@ -82,6 +82,8 @@
       <DependentUpon>201905271750106_updEntities.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AdminModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Windows\ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
     </Compile>

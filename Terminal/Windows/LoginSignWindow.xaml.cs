@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Terminal.Entities;
+using Terminal.Models;
 
 namespace Terminal.Windows
 {
@@ -21,10 +22,22 @@ namespace Terminal.Windows
     public partial class LoginSignWindow : Window
     {
         private EFContext _context;
+        public List<UserModel> _userList;// = null;
         public LoginSignWindow()
         {
             InitializeComponent();
             _context = new EFContext();
+            _userList = new List<UserModel>(
+                _context.Users.Select(u => new UserModel()
+                {
+                    Id = u.Id,
+                    Money = u.Money,
+                    Fname = u.Fname,
+                    Lname = u.Lname,
+                    Phone = u.Phone,
+                    Email = u.Email,
+                    Password = u.Password
+                }).ToList());
         }
 
         public bool IsEmpty(string s)
@@ -86,17 +99,60 @@ namespace Terminal.Windows
             }
             return true;
         }
+        public bool IsExist(string login)
+        {
+            foreach(var item in _userList)
+            {
+                if (login != item.Phone && login != item.Email)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         private void BtnLog_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("login");
+            List<string> fieldList = new List<string> {txtLogin.Text,txtLoginPass.Password.ToString()};
+            try
+            {
+                foreach (string field in fieldList)
+                {
+                    if (IsEmpty(field))
+                    {
+                        MessageBox.Show("not all fields are full!");
+                        return;
+                    }
+                }
+                LostFocus_LogPass(sender, e);
+                if (!IsExist(txtLogin.Text) || _userList is null)
+                {
+                    MessageBoxResult result = MessageBox.Show("user not exist! add new user?", "user not exist", MessageBoxButton.OKCancel);
+                    switch (result)
+                    {
+                        case MessageBoxResult.OK:
+                            tabSignup.Focus();
+                            break;
+                        case MessageBoxResult.Cancel:
+                            return;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            this.DialogResult = true;
         }
 
         private void BtnSign_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("signup");
             List<string> fieldList = new List<string> {
-                txtFname.Text,txtLname.Text,txtEmail.Text,txtPhone.Text,txtSignPass.Password};
+                txtFname.Text,txtLname.Text,txtEmail.Text,txtPhone.Text,txtSignPass.Password.ToString()};
             try
             {
                 foreach (string field in fieldList)
@@ -185,6 +241,23 @@ namespace Terminal.Windows
                     pass = (count == 3) ? "good password" : "normal password";
                     MessageBox.Show(pass);
                 }
+            }
+        }
+
+        private void LostFocus_Login(object sender, RoutedEventArgs e)
+        {
+            if (IsEmpty(txtLogin.Text))
+            {
+                MessageBox.Show("field 'Email/Phone' is empty!");
+            }
+        }
+
+        private void LostFocus_LogPass(object sender, RoutedEventArgs e)
+        {
+            if (IsEmpty(txtLoginPass.Password.ToString()))
+            {
+                MessageBox.Show("field 'Password' is empty!");
+                return;
             }
         }
     }
