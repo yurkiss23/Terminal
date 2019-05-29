@@ -46,6 +46,13 @@
         <Setter Property="Foreground" Value="Yellow"/>
         <Setter Property="FontSize" Value="18"/>
     </Style>
+    <Style x:Key="LabelLayoutStyle" TargetType="Label">
+        <Setter Property="Foreground" Value="Yellow"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
     <Style x:Key="StackPanelStyle" TargetType="StackPanel">
         <Setter Property="DockPanel.Dock" Value="Top"/>
         <Setter Property="Orientation" Value="Horizontal"/>
@@ -73,6 +80,7 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Width" Value="232"/>
+        <Setter Property="MaxLength" Value="8"/>
     </Style>
     <Style x:Key="TabControlStyle" TargetType="TabControl">
         <Setter Property="Background" Value="Gray"/>

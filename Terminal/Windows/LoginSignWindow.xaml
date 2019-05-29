@@ -30,26 +30,33 @@
                 <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" Height="Auto"
                             Style="{DynamicResource StackPanelStyle}">
                     <Label x:Name="tbLogin" Style="{StaticResource LabelTextblockStyle}" Content="Email/Phone:"/>
-                    <TextBox x:Name="txtLogin" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox x:Name="txtLogin" Style="{DynamicResource TextBoxStyle}"
+                             LostFocus="LostFocus_Login"/>
                     <Label x:Name="tbLoginPass" Style="{StaticResource LabelTextblockStyle}" Content="Password:"/>
-                    <PasswordBox x:Name="txtLoginPass" Style="{DynamicResource PassBoxStyle}"/>
+                    <PasswordBox x:Name="txtLoginPass" Style="{DynamicResource PassBoxStyle}"
+                                 LostFocus="LostFocus_LogPass"/>
                     <Button x:Name="btnLog" Content="OK" Width="150" Height="60" Margin="10"
                             Click="BtnLog_Click" Style="{DynamicResource ButtonStyle}"/>
                 </StackPanel>
             </TabItem>
-            <TabItem x:Name="tabSignin" Header="Signin" Width="122" Style="{DynamicResource TabItemStyle}">
+            <TabItem x:Name="tabSignup" Header="Signup" Width="122" Style="{DynamicResource TabItemStyle}">
                 <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom" Height="Auto"
                             Style="{DynamicResource StackPanelStyle}">
                     <Label x:Name="tbFname" Style="{StaticResource LabelTextblockStyle}" Content="FirstName:"/>
-                    <TextBox x:Name="txtFname" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox x:Name="txtFname" Style="{DynamicResource TextBoxStyle}"
+                             LostFocus="LostFocus_Fname"/>
                     <Label x:Name="tbLname" Style="{StaticResource LabelTextblockStyle}" Content="LastName:"/>
-                    <TextBox x:Name="txtLname" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox x:Name="txtLname" Style="{DynamicResource TextBoxStyle}"
+                             LostFocus="LostFocus_Lname"/>
                     <Label x:Name="tbPhone" Style="{StaticResource LabelTextblockStyle}" Content="Phone:"/>
-                    <TextBox x:Name="txtPhone" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox x:Name="txtPhone" Style="{DynamicResource TextBoxStyle}"
+                             LostFocus="LostFocus_Phone"/>
                     <Label x:Name="tbEmail" Style="{StaticResource LabelTextblockStyle}" Content="Email:"/>
-                    <TextBox x:Name="txtEmail" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox x:Name="txtEmail" Style="{DynamicResource TextBoxStyle}"
+                             LostFocus="LostFocus_Email"/>
                     <Label x:Name="tbSignPass" Style="{StaticResource LabelTextblockStyle}" Content="Password:"/>
-                    <PasswordBox x:Name="txtSignPass" Style="{DynamicResource PassBoxStyle}"/>
+                    <PasswordBox x:Name="txtSignPass" Style="{DynamicResource PassBoxStyle}"
+                                 LostFocus="LostFocus_Pass"/>
                     <Button x:Name="btnSign" Content="OK" Width="150" Height="60" Margin="10"
                             Click="BtnSign_Click" Style="{DynamicResource ButtonStyle}"/>
                 </StackPanel>

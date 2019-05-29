@@ -6,7 +6,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Terminal"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="830.978" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <!--<Window.Resources>
         <Style x:Key="PressStyle" TargetType="Label">
             <Setter Property="Foreground" Value="Green"/>
@@ -48,12 +48,13 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <!--<ColumnDefinition Width="*"/>-->
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <!--start-->
                 <Button x:Name="btnCashIn" Grid.Column="0" Grid.Row="0"
                         Click="BtnCashIn_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
@@ -89,20 +90,25 @@
                         <TextBlock Text="CallToOperator" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
-                <Button x:Name="btnCurConvert" Grid.Column="2" Grid.Row="1"
+                <!--<Button x:Name="btnCurConvert" Grid.Column="2" Grid.Row="1"
                         Click="Calc_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
                         <Image x:Name="imgCalc" Style="{DynamicResource ImageBtnStyle}"/>
                         <TextBlock Text="CurrencyCalc" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
-                </Button>
-                <Button x:Name="Convert" Grid.Column="3" Grid.Row="0"
+                </Button>-->
+                <Button x:Name="Convert" Grid.Column="2" Grid.Row="1"
                         Click="Convert_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
                         <Image x:Name="Convert_img" Style="{DynamicResource ImageBtnStyle}"/>
                         <TextBlock Text="Converter" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
+                <!--cashIn-->
+                
+                <!--admin-->
+                <Label x:Name="tbTitleLayout" Grid.Column="1" Style="{DynamicResource LabelLayoutStyle}"/>
+                
             </Grid>
         </DockPanel>
     </Border>
