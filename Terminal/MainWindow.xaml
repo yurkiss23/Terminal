@@ -54,6 +54,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <!--start-->
                 <Button x:Name="btnCashIn" Grid.Column="0" Grid.Row="0"
                         Click="BtnCashIn_Click" Style="{DynamicResource ButtonStyle}">
                     <StackPanel>
@@ -103,6 +104,11 @@
                         <TextBlock Text="Converter" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
+                <!--cashIn-->
+                
+                <!--admin-->
+                <Label x:Name="tbTitleLayout" Grid.Column="1" Style="{DynamicResource LabelLayoutStyle}"/>
+                
             </Grid>
         </DockPanel>
     </Border>

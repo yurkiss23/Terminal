@@ -24,6 +24,7 @@ namespace Terminal
     {
         private EFContext _context;
         public int UserID { get; set; }
+        public string Source { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -47,19 +48,55 @@ namespace Terminal
             loginSign.Owner = this;
             if (loginSign.ShowDialog() == true)
             {
-                UserID = (loginSign.txtLogin.Text.Contains("@"))?
-                    _context.Users.Where(u => u.Email == loginSign.txtLogin.Text).First().Id:
-                    _context.Users.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
-                MessageBox.Show(UserID.ToString());
+                this.Source = loginSign.Source;
+                switch (Source)
+                {
+                    case "user":
+                        UserID = (loginSign.txtLogin.Text.Contains("@")) ?
+                            _context.Users.Where(u => u.Email == loginSign.txtLogin.Text).First().Id :
+                            _context.Users.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
+                        break;
+                    case "admin":
+                        UserID = (loginSign.txtLogin.Text.Contains("@")) ?
+                            _context.Admins.Where(u => u.Email == loginSign.txtLogin.Text).First().Id :
+                            _context.Admins.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
+                        break;
+                    case null:
+                        break;
+                    default:
+                        break;
+                }
+                //MessageBox.Show(UserID.ToString());
             }
-            User tmp = _context.Users.Where(u => u.Id == UserID).First();
+            switch (Source)
+            {
+                case "user":
+                    User tmp = _context.Users.Where(u => u.Id == UserID).First();
+                    tbAccount.Content = tmp.Fname + " " + tmp.Lname;
+                    tbMoney.Content = tmp.Money;
+                    break;
+                case "admin":
+                    IsAdmin();
+                    break;
+                case null:
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void IsAdmin()
+        {
+            Admin tmp = _context.Admins.Where(a => a.Id == UserID).First();
             tbAccount.Content = tmp.Fname + " " + tmp.Lname;
-            tbMoney.Content = tmp.Money;
+            tbMoney.Content = "admin";
+
         }
 
         private void BtnCashIn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("cashIn");
+            btnCashSend.Visibility = Visibility.Hidden;
+            //tbTitleLayout.Content = "Content";
         }
 
         private void BtnCashSend_Click(object sender, RoutedEventArgs e)

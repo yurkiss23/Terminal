@@ -22,7 +22,9 @@ namespace Terminal.Windows
     public partial class LoginSignWindow : Window
     {
         private EFContext _context;
-        public List<UserModel> _userList;// = null;
+        public List<UserModel> _userList;
+        public List<AdminModel> _adminList;
+        public string Source { get; set; }
         public LoginSignWindow()
         {
             InitializeComponent();
@@ -37,6 +39,16 @@ namespace Terminal.Windows
                     Phone = u.Phone,
                     Email = u.Email,
                     Password = u.Password
+                }).ToList());
+            _adminList = new List<AdminModel>(
+                _context.Admins.Select(a => new AdminModel()
+                {
+                    Id = a.Id,
+                    Fname = a.Fname,
+                    Lname = a.Lname,
+                    Phone = a.Phone,
+                    Email = a.Email,
+                    Password = a.Password
                 }).ToList());
         }
 
@@ -99,21 +111,32 @@ namespace Terminal.Windows
             }
             return true;
         }
-        public bool IsExist(string login)
+        public bool IsExist(string login, ref string list)
         {
             foreach(var item in _userList)
             {
-                if (login != item.Phone && login != item.Email)
+                if (login == item.Phone || login == item.Email)
                 {
-                    return false;
+                    list = "user";
+                    return true;
                 }
             }
-            return true;
+            foreach (var itemA in _adminList)
+            {
+                if (login == itemA.Phone || login == itemA.Email)
+                {
+                    list = "admin";
+                    return true;
+                }
+            }
+            //list = null;
+            return false;
         }
 
         private void BtnLog_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("login");
+            string list = null;
             List<string> fieldList = new List<string> {txtLogin.Text,txtLoginPass.Password.ToString()};
             try
             {
@@ -126,7 +149,7 @@ namespace Terminal.Windows
                     }
                 }
                 LostFocus_LogPass(sender, e);
-                if (!IsExist(txtLogin.Text) || _userList is null)
+                if (!IsExist(txtLogin.Text, ref list))
                 {
                     MessageBoxResult result = MessageBox.Show("user not exist! add new user?", "user not exist", MessageBoxButton.OKCancel);
                     switch (result)
@@ -145,6 +168,7 @@ namespace Terminal.Windows
             {
                 MessageBox.Show(ex.Message);
             }
+            Source = list;
             this.DialogResult = true;
         }
 
