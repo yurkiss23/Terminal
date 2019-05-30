@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Terminal.Entities;
+using Terminal.Models;
 using Terminal.Windows;
 
 namespace Terminal
@@ -23,6 +24,7 @@ namespace Terminal
     public partial class MainWindow : Window
     {
         private EFContext _context;
+        List<ViewUserModel> _userList;
         public int UserID { get; set; }
         public string Source { get; set; }
         public MainWindow()
@@ -53,12 +55,12 @@ namespace Terminal
                 {
                     case "user":
                         UserID = (loginSign.txtLogin.Text.Contains("@")) ?
-                            _context.Users.Where(u => u.Email == loginSign.txtLogin.Text).First().Id :
+                            _context.Users.Where(u => u.Email == loginSign.txtLogin.Text).First().Id:
                             _context.Users.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
                         break;
                     case "admin":
                         UserID = (loginSign.txtLogin.Text.Contains("@")) ?
-                            _context.Admins.Where(u => u.Email == loginSign.txtLogin.Text).First().Id :
+                            _context.Admins.Where(u => u.Email == loginSign.txtLogin.Text).First().Id:
                             _context.Admins.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
                         break;
                     case null:
@@ -89,7 +91,19 @@ namespace Terminal
             Admin tmp = _context.Admins.Where(a => a.Id == UserID).First();
             tbAccount.Content = tmp.Fname + " " + tmp.Lname;
             tbMoney.Content = "admin";
-
+            btnCashIn.Visibility = btnCashOut.Visibility = btnCashSend.Visibility
+                = btnChat.Visibility = btnArch.Visibility = Convert.Visibility = Visibility.Hidden;
+            _userList = new List<ViewUserModel>(
+                _context.Users.Select(u => new ViewUserModel()
+                {
+                    Id = u.Id,
+                    Fname = u.Fname,
+                    Lname = u.Lname
+                }).ToList());
+            dgUsers.ItemsSource = _userList.DefaultIfEmpty();
+            dgUsers.Visibility = Visibility.Visible;
+            spUser.Visibility = Visibility.Visible;
+            spUserBtn.Visibility = Visibility.Visible;
         }
 
         private void BtnCashIn_Click(object sender, RoutedEventArgs e)
@@ -129,6 +143,115 @@ namespace Terminal
         {
             KR cnv = new KR();
             cnv.ShowDialog();
+        }
+
+        private void SelectionChanged_User(object sender, SelectionChangedEventArgs e)
+        {
+            //int id = (dgUsers.SelectedItem as ViewUserModel).Id;
+            try
+            {
+                if(dgUsers.SelectedItem != null)
+                {
+                    ViewUserModel tmp = dgUsers.SelectedItem as ViewUserModel;
+                    User select = _context.Users.Where(u => u.Id == tmp.Id).First();
+                    lblName.Content = select.Fname + " " + select.Lname;
+                    lblPhone.Content = select.Phone;
+                    lblEmail.Content = select.Email;
+                    lblMoney.Content = select.Money;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BtnDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+            int id = (dgUsers.SelectedItem as ViewUserModel).Id;
+            try
+            {
+                _context.Users.Remove(_context.Users.Where(u => u.Id == id).First());
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BtnUpdateUser_Click(object sender, RoutedEventArgs e)
+        {
+            UserID = (dgUsers.SelectedItem as ViewUserModel).Id;
+            try
+            {
+                User select = _context.Users.Where(u => u.Id == UserID).First();
+                MessageBoxResult result =
+                    MessageBox.Show("update phone or email?", "update contacts", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        UpdateWindow update = new UpdateWindow();
+                        update.Owner = this;
+                        if (update.ShowDialog() == true)
+                        {
+                            select.Phone = update.txtUpdPhone.Text;
+                            select.Email = update.txtUpdEmail.Text;
+                            _context.SaveChanges();
+                        }
+                        break;
+                    case MessageBoxResult.No:
+                        return;
+                    default:
+                        break;
+                }
+                result =
+                    MessageBox.Show("update name?", "update name", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        UpdateNameWindow updateName = new UpdateNameWindow();
+                        updateName.Owner = this;
+                        if (updateName.ShowDialog() == true)
+                        {
+                            select.Fname = updateName.txtUpdFname.Text;
+                            select.Lname = updateName.txtUpdLname.Text;
+                            _context.SaveChanges();
+                        }
+                        break;
+                    case MessageBoxResult.No:
+                        return;
+                    default:
+                        break;
+                }
+                //_context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void BtnReload_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                User select = _context.Users.Where(u => u.Id == UserID).First();
+                lblName.Content = select.Fname + " " + select.Lname;
+                lblPhone.Content = select.Phone;
+                lblEmail.Content = select.Email;
+                lblMoney.Content = select.Money;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            dgUsers.ItemsSource = _context.Users.Select(u => new ViewUserModel()
+            {
+                Id = u.Id,
+                Fname = u.Fname,
+                Lname = u.Lname
+            }).ToList();
         }
     }
 }

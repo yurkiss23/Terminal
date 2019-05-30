@@ -132,4 +132,10 @@
         <Setter Property="Width" Value="60"/>
         <Setter Property="Source" Value="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png"/>
     </Style>
+    <Style x:Key="DataGridStyle" TargetType="DataGrid">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Foreground" Value="IndianRed"/>
+        <Setter Property="Background" Value="WhiteSmoke"/>
+        <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+    </Style>
 </ResourceDictionary>

@@ -132,6 +132,31 @@ namespace Terminal.Windows
             //list = null;
             return false;
         }
+        public bool IsWrongPass(string login, string pass)
+        {
+            foreach(var item in _userList)
+            {
+                if (item.Email == login || item.Phone == login)
+                {
+                    if (item.Password == pass)
+                    {
+                        return false;
+                    }
+                }
+            }
+            foreach (var itemA in _adminList)
+            {
+                if (itemA.Email == login || itemA.Phone == login)
+                {
+                    if (itemA.Password == pass)
+                    {
+                        return false;
+                    }
+                }
+            }
+            MessageBox.Show("!!!");
+            return true;
+        }
 
         private void BtnLog_Click(object sender, RoutedEventArgs e)
         {
@@ -163,13 +188,14 @@ namespace Terminal.Windows
                             break;
                     }
                 }
+                this.DialogResult = (IsWrongPass(txtLogin.Text, txtLoginPass.Password.ToString())) ? false : true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             Source = list;
-            this.DialogResult = true;
+            //this.DialogResult = true;
         }
 
         private void BtnSign_Click(object sender, RoutedEventArgs e)
@@ -197,7 +223,22 @@ namespace Terminal.Windows
                     Email = txtEmail.Text,
                     Password = txtSignPass.Password
                 });
-                //_context.SaveChanges();
+                _context.SaveChanges();
+                _userList = new List<UserModel>(
+                    _context.Users.Select(u => new UserModel()
+                    {
+                        Id = u.Id,
+                        Money = u.Money,
+                        Fname = u.Fname,
+                        Lname = u.Lname,
+                        Phone = u.Phone,
+                        Email = u.Email,
+                        Password = u.Password
+                    }).ToList());
+                tabLogin.Focus();
+                txtLogin.Text = txtEmail.Text;
+                txtLoginPass.Password = txtSignPass.Password;
+                BtnLog_Click(sender, e);
             }
             catch (Exception ex)
             {
