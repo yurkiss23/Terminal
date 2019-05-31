@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,13 +28,17 @@ namespace Terminal
     {
         private EFContext _context;
         List<ViewUserModel> _userList;
+        private string url = null;
+
         public int UserID { get; set; }
         public string Source { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             _context = new EFContext();
+            //_baseUrl = ConfigurationManager.AppSettings["baseUrl"];
 
+            url = $"{ConfigurationManager.AppSettings["baseUrl"]}api/users";
             cbTheme.SelectionChanged += SelectionChanged_Themes;
         }
 
@@ -54,14 +61,14 @@ namespace Terminal
                 switch (Source)
                 {
                     case "user":
-                        UserID = (loginSign.txtLogin.Text.Contains("@")) ?
-                            _context.Users.Where(u => u.Email == loginSign.txtLogin.Text).First().Id:
-                            _context.Users.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
+                        UserID = loginSign.txtLogin.Text.Contains("@") ?
+                            loginSign._userList.Where(u=>u.Email==loginSign.txtEmail.Text).First().Id:
+                            loginSign._userList.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
                         break;
                     case "admin":
-                        UserID = (loginSign.txtLogin.Text.Contains("@")) ?
-                            _context.Admins.Where(u => u.Email == loginSign.txtLogin.Text).First().Id:
-                            _context.Admins.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
+                        UserID = loginSign.txtLogin.Text.Contains("@") ?
+                            loginSign._adminList.Where(u => u.Email == loginSign.txtLogin.Text).First().Id:
+                            loginSign._adminList.Where(u => u.Phone == loginSign.txtLogin.Text).First().Id;
                         break;
                     case null:
                         break;
@@ -73,7 +80,13 @@ namespace Terminal
             switch (Source)
             {
                 case "user":
-                    User tmp = _context.Users.Where(u => u.Id == UserID).First();
+                    User tmp = null;// _context.Users.Where(u => u.Id == UserID).First();
+                    using (WebClient client = new WebClient())
+                    {
+                        client.Encoding = Encoding.UTF8;
+                        tmp = JsonConvert.DeserializeObject<List<UserModel>>(
+                            client.DownloadString(url)).Where(u => u.Id == UserID).First();
+                    }
                     tbAccount.Content = tmp.Fname + " " + tmp.Lname;
                     tbMoney.Content = tmp.Money;
                     break;
@@ -93,13 +106,17 @@ namespace Terminal
             tbMoney.Content = "admin";
             btnCashIn.Visibility = btnCashOut.Visibility = btnCashSend.Visibility
                 = btnChat.Visibility = btnArch.Visibility = Convert.Visibility = Visibility.Hidden;
-            _userList = new List<ViewUserModel>(
-                _context.Users.Select(u => new ViewUserModel()
-                {
-                    Id = u.Id,
-                    Fname = u.Fname,
-                    Lname = u.Lname
-                }).ToList());
+            using (WebClient client = new WebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+                _userList = JsonConvert.DeserializeObject<List<ViewUserModel>>(
+                    client.DownloadString(url)).Select(u => new ViewUserModel()
+                    {
+                        Id = u.Id,
+                        Fname = u.Fname,
+                        Lname = u.Lname
+                    }).ToList();
+            }
             dgUsers.ItemsSource = _userList.DefaultIfEmpty();
             dgUsers.Visibility = Visibility.Visible;
             spUser.Visibility = Visibility.Visible;
@@ -132,11 +149,6 @@ namespace Terminal
         {
             ChatWindow chat = new ChatWindow();
             chat.ShowDialog();
-        }
-
-        private void Calc_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("currency converter");
         }
 
         private void Convert_Click(object sender, RoutedEventArgs e)

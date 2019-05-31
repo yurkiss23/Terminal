@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +25,7 @@ namespace Terminal.Windows
     public partial class LoginSignWindow : Window
     {
         private EFContext _context;
+        //private string _baseUrl = null;
         public List<UserModel> _userList;
         public List<AdminModel> _adminList;
         public string Source { get; set; }
@@ -29,17 +33,15 @@ namespace Terminal.Windows
         {
             InitializeComponent();
             _context = new EFContext();
-            _userList = new List<UserModel>(
-                _context.Users.Select(u => new UserModel()
-                {
-                    Id = u.Id,
-                    Money = u.Money,
-                    Fname = u.Fname,
-                    Lname = u.Lname,
-                    Phone = u.Phone,
-                    Email = u.Email,
-                    Password = u.Password
-                }).ToList());
+            //_baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+
+            string url = $"{ConfigurationManager.AppSettings["baseUrl"]}api/users";
+            using (WebClient client = new WebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+                var result = client.DownloadString(url);
+                _userList = JsonConvert.DeserializeObject<List<UserModel>>(result);
+            }
             _adminList = new List<AdminModel>(
                 _context.Admins.Select(a => new AdminModel()
                 {
@@ -188,7 +190,7 @@ namespace Terminal.Windows
                             break;
                     }
                 }
-                this.DialogResult = (IsWrongPass(txtLogin.Text, txtLoginPass.Password.ToString())) ? false : true;
+                this.DialogResult = IsWrongPass(txtLogin.Text, txtLoginPass.Password.ToString()) ? false : true;
             }
             catch (Exception ex)
             {
