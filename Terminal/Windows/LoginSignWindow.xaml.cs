@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +26,8 @@ namespace Terminal.Windows
     public partial class LoginSignWindow : Window
     {
         private EFContext _context;
+        private string url = null;
+
         public List<UserModel> _userList;
         public List<AdminModel> _adminList;
         public string Source { get; set; }
@@ -30,17 +35,15 @@ namespace Terminal.Windows
         {
             InitializeComponent();
             _context = new EFContext();
-            _userList = new List<UserModel>(
-                _context.Users.Select(u => new UserModel()
-                {
-                    Id = u.Id,
-                    Money = u.Money,
-                    Fname = u.Fname,
-                    Lname = u.Lname,
-                    Phone = u.Phone,
-                    Email = u.Email,
-                    Password = u.Password
-                }).ToList());
+            //_baseUrl = ConfigurationManager.AppSettings["baseUrl"];
+
+            url = $"{ConfigurationManager.AppSettings["baseUrl"]}api/users";
+            using (WebClient client = new WebClient())
+            {
+                client.Encoding = Encoding.UTF8;
+                var result = client.DownloadString(url);
+                _userList = JsonConvert.DeserializeObject<List<UserModel>>(result);
+            }
             _adminList = new List<AdminModel>(
                 _context.Admins.Select(a => new AdminModel()
                 {
@@ -155,7 +158,7 @@ namespace Terminal.Windows
                     }
                 }
             }
-            MessageBox.Show("!!!");
+            MessageBox.Show("wrong password!");
             return true;
         }
 
@@ -172,6 +175,7 @@ namespace Terminal.Windows
         {
             MessageBox.Show("login");
             string list = null;
+            bool dlgResult = false;
             List<string> fieldList = new List<string> {txtLogin.Text,txtLoginPass.Password.ToString()};
             try
             {
@@ -198,14 +202,14 @@ namespace Terminal.Windows
                             break;
                     }
                 }
-                this.DialogResult = (IsWrongPass(txtLogin.Text, txtLoginPass.Password.ToString())) ? false : true;
+                dlgResult = IsWrongPass(txtLogin.Text, txtLoginPass.Password.ToString()) ? false : true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            Source = list;            
-            //this.DialogResult = true;
+            Source = list;
+            this.DialogResult = dlgResult;
         }
 
         private void BtnSign_Click(object sender, RoutedEventArgs e)
@@ -224,27 +228,34 @@ namespace Terminal.Windows
                     }
                 }
                 LostFocus_Pass(sender, e);
-                _context.Users.Add(new User
+                using (WebClient client = new WebClient())
                 {
-                    Money = 0,
-                    Fname = txtFname.Text,
-                    Lname = txtLname.Text,
-                    Phone = txtPhone.Text,
-                    Email = txtEmail.Text,
-                    Password = PasswordHash(txtSignPass.Password)
-                });
-                _context.SaveChanges();
-                _userList = new List<UserModel>(
-                    _context.Users.Select(u => new UserModel()
+                    client.Encoding = Encoding.UTF8;
+                    client.Headers.Add("Content-Type", "application/json");
+                    string method = "POST";
+                    string data = JsonConvert.SerializeObject(new
                     {
-                        Id = u.Id,
-                        Money = u.Money,
-                        Fname = u.Fname,
-                        Lname = u.Lname,
-                        Phone = u.Phone,
-                        Email = u.Email,
-                        Password = u.Password
-                    }).ToList());
+                        Money = 0,
+                        Fname = txtFname.Text,
+                        Lname = txtLname.Text,
+                        Phone = txtPhone.Text,
+                        Email = txtEmail.Text,
+                        Password = PasswordHash(txtSignPass.Password)
+                    });
+                    var result = client.UploadString(url, method, data);
+
+                    _userList = JsonConvert.DeserializeObject<List<UserModel>>(client.DownloadString(url))
+                        .Select(u => new UserModel()
+                        {
+                            Id = u.Id,
+                            Money = u.Money,
+                            Fname = u.Fname,
+                            Lname = u.Lname,
+                            Phone = u.Phone,
+                            Email = u.Email,
+                            Password = u.Password
+                        }).ToList();
+                }
                 tabLogin.Focus();
                 txtLogin.Text = txtEmail.Text;
                 txtLoginPass.Password = PasswordHash(txtSignPass.Password);
