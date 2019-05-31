@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -160,6 +161,15 @@ namespace Terminal.Windows
             return true;
         }
 
+        public static string PasswordHash(string plaintext)
+        {
+            HashAlgorithm mhash = new SHA1CryptoServiceProvider();
+            byte[] bytValue = Encoding.UTF8.GetBytes(plaintext);
+            byte[] bytHash = mhash.ComputeHash(bytValue);
+            mhash.Clear();
+            return Convert.ToBase64String(bytHash);
+        }
+
         private void BtnLog_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("login");
@@ -196,7 +206,7 @@ namespace Terminal.Windows
             {
                 MessageBox.Show(ex.Message);
             }
-            Source = list;
+            Source = list;            
             //this.DialogResult = true;
         }
 
@@ -223,7 +233,7 @@ namespace Terminal.Windows
                     Lname = txtLname.Text,
                     Phone = txtPhone.Text,
                     Email = txtEmail.Text,
-                    Password = txtSignPass.Password
+                    Password = PasswordHash(txtSignPass.Password)
                 });
                 _context.SaveChanges();
                 _userList = new List<UserModel>(
@@ -239,13 +249,13 @@ namespace Terminal.Windows
                     }).ToList());
                 tabLogin.Focus();
                 txtLogin.Text = txtEmail.Text;
-                txtLoginPass.Password = txtSignPass.Password;
+                txtLoginPass.Password = PasswordHash(txtSignPass.Password);
                 BtnLog_Click(sender, e);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }            
         }
 
         private void LostFocus_Fname(object sender, RoutedEventArgs e)
