@@ -84,8 +84,10 @@ namespace Terminal
                     using (WebClient client = new WebClient())
                     {
                         client.Encoding = Encoding.UTF8;
-                        tmp = JsonConvert.DeserializeObject<List<UserModel>>(
-                            client.DownloadString(url)).Where(u => u.Id == UserID).First();
+                        var result = client.DownloadString(url);
+                        List<UserModel> tmpList = JsonConvert.DeserializeObject<List<UserModel>>(result);
+                        MessageBox.Show(UserID.ToString());
+                        tmp = tmpList.Where(u => u.Id == UserID).First();
                     }
                     tbAccount.Content = tmp.Fname + " " + tmp.Lname;
                     tbMoney.Content = tmp.Money;
@@ -165,7 +167,13 @@ namespace Terminal
                 if(dgUsers.SelectedItem != null)
                 {
                     ViewUserModel tmp = dgUsers.SelectedItem as ViewUserModel;
-                    User select = _context.Users.Where(u => u.Id == tmp.Id).First();
+                    User select = null;// _context.Users.Where(u => u.Id == tmp.Id).First();
+                    using (WebClient client = new WebClient())
+                    {
+                        client.Encoding = Encoding.UTF8;
+                        select = JsonConvert.DeserializeObject<List<UserModel>>(client.DownloadString(url))
+                            .Where(u => u.Id == tmp.Id).First();
+                    }
                     lblName.Content = select.Fname + " " + select.Lname;
                     lblPhone.Content = select.Phone;
                     lblEmail.Content = select.Email;
@@ -183,6 +191,14 @@ namespace Terminal
             int id = (dgUsers.SelectedItem as ViewUserModel).Id;
             try
             {
+                //using (WebClient client = new WebClient())
+                //{
+                //    client.Encoding = Encoding.UTF8;
+                //    client.Headers.Add("Content-Type", "application/json");
+                //    string method = "POST";
+                //    var result = client.UploadString(url, method, id.ToString());
+                //    MessageBox.Show("!!!");
+                //}
                 _context.Users.Remove(_context.Users.Where(u => u.Id == id).First());
                 _context.SaveChanges();
             }
@@ -248,7 +264,13 @@ namespace Terminal
         {
             try
             {
-                User select = _context.Users.Where(u => u.Id == UserID).First();
+                User select = null;// _context.Users.Where(u => u.Id == UserID).First();
+                using (WebClient client = new WebClient())
+                {
+                    client.Encoding = Encoding.UTF8;
+                    select = JsonConvert.DeserializeObject<List<UserModel>>(client.DownloadString(url))
+                        .Where(u => u.Id == UserID).First();
+                }
                 lblName.Content = select.Fname + " " + select.Lname;
                 lblPhone.Content = select.Phone;
                 lblEmail.Content = select.Email;
@@ -258,12 +280,19 @@ namespace Terminal
             {
                 MessageBox.Show(ex.Message);
             }
-            dgUsers.ItemsSource = _context.Users.Select(u => new ViewUserModel()
+            using (WebClient client = new WebClient())
             {
-                Id = u.Id,
-                Fname = u.Fname,
-                Lname = u.Lname
-            }).ToList();
+                client.Encoding = Encoding.UTF8;
+                dgUsers.ItemsSource = 
+                    JsonConvert.DeserializeObject<List<ViewUserModel>>(client.DownloadString(url))
+                    .Select(u => new ViewUserModel()
+                    {
+                        Id = u.Id,
+                        Fname = u.Fname,
+                        Lname = u.Lname
+                    }).ToList();
+            }
+            
         }
     }
 }
