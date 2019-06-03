@@ -127,8 +127,12 @@ namespace Terminal
 
         private void BtnCashIn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("cashIn");
-            btnCashSend.Visibility = Visibility.Hidden;
+            gridStart.Visibility = Visibility.Hidden;
+            casHin.Visibility = Visibility.Visible;
+
+
+          //  MessageBox.Show("cashIn");
+           // btnCashSend.Visibility = Visibility.Hidden;
             //tbTitleLayout.Content = "Content";
         }
 
@@ -293,6 +297,21 @@ namespace Terminal
                     }).ToList();
             }
             
+        }
+
+        private void OK_Click(object sender, RoutedEventArgs e)
+        {
+            if(sum.Text.All(char.IsDigit)&&int.Parse(sum.Text)>0 )
+            {
+                Res.Foreground = new SolidColorBrush(Colors.Lime);
+                Res.Content = "You put " + int.Parse(sum.Text) + " UAH";
+
+            }
+            else
+            {
+                Res.Foreground = new SolidColorBrush(Colors.Red);
+                Res.Content = "Error";
+            }
         }
     }
 }
