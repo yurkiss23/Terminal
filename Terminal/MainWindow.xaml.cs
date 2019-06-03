@@ -127,9 +127,8 @@ namespace Terminal
 
         private void BtnCashIn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("cashIn");
-            btnCashSend.Visibility = Visibility.Hidden;
-            //tbTitleLayout.Content = "Content";
+            gridStart.Visibility = Visibility.Hidden;
+            casHin.Visibility = Visibility.Visible;
         }
 
         private void BtnCashSend_Click(object sender, RoutedEventArgs e)
@@ -139,7 +138,8 @@ namespace Terminal
 
         private void BtnCashOut_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("cashOut");
+            gridStart.Visibility = Visibility.Hidden;
+            casHout.Visibility = Visibility.Visible;
         }
 
         private void BtnArch_Click(object sender, RoutedEventArgs e)
@@ -293,6 +293,48 @@ namespace Terminal
                     }).ToList();
             }
             
+        }
+
+        private void OK_Click(object sender, RoutedEventArgs e)
+        {
+            if(sum.Text.All(char.IsDigit)&&int.Parse(sum.Text)>0 )
+            {
+                Res.Foreground = new SolidColorBrush(Colors.Lime);
+                Res.Content = "You put " + int.Parse(sum.Text) + " UAH";
+
+            }
+            else
+            {
+                Res.Foreground = new SolidColorBrush(Colors.Red);
+                Res.Content = "Error";
+            }
+        }
+
+        private void Cancl_Click(object sender, RoutedEventArgs e)
+        {
+            casHin.Visibility = Visibility.Hidden;
+            gridStart.Visibility = Visibility.Visible;
+        }
+
+        private void OK2_Click(object sender, RoutedEventArgs e)
+        {
+            if (sum2.Text.All(char.IsDigit) && int.Parse(sum2.Text) > 0)
+            {
+                Res2.Foreground = new SolidColorBrush(Colors.Lime);
+                Res2.Content = "You took " + int.Parse(sum2.Text) + " UAH";
+
+            }
+            else
+            {
+                Res2.Foreground = new SolidColorBrush(Colors.Red);
+                Res2.Content = "Error";
+            }
+        }
+
+        private void Cancl2_Click(object sender, RoutedEventArgs e)
+        {
+            casHout.Visibility = Visibility.Hidden;
+            gridStart.Visibility = Visibility.Visible;
         }
     }
 }
