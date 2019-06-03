@@ -43,10 +43,17 @@
                                   Content="PurpleTheme"/>
                 </ComboBox>
             </StackPanel>
-            <Grid x:Name="casHin" Visibility="Hidden" Height="32">
+            <Grid x:Name="casHin" Visibility="Hidden"  Height="32">
                 <TextBox x:Name="sum" Height="32" VerticalAlignment="Bottom" Margin="163,-93,-362,93"/>
                 <Button x:Name="OK" Click="OK_Click" Content="PUT" Margin="417,-93,-507,93"/>
+                <Button x:Name="Cancl" Content="CANCEL" Click="Cancl_Click" Margin="577,-93,-680,93"/>
                 <Label x:Name="Res" Margin="198,5,-527,-82" HorizontalContentAlignment="Center" FontSize="25"/>
+            </Grid>
+            <Grid x:Name="casHout" Visibility="Hidden" Height="32">
+                <TextBox x:Name="sum2" Height="32" VerticalAlignment="Bottom" Margin="163,-93,-362,93"/>
+                <Button x:Name="OK2" Click="OK2_Click" Content="TAKE" Margin="417,-93,-507,93"/>
+                <Button x:Name="Cancl2" Content="CANCEL" Click="Cancl2_Click" Margin="577,-93,-680,93"/>
+                <Label x:Name="Res2" Margin="198,5,-527,-82" HorizontalContentAlignment="Center" FontSize="25"/>
             </Grid>
             <Grid x:Name="gridStart"  DockPanel.Dock="Top">
                 <Grid.ColumnDefinitions>
