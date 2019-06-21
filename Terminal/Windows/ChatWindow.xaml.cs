@@ -27,6 +27,11 @@ namespace Terminal.Windows
     /// </summary>
     public partial class ChatWindow : Window
     {
+        public class MyItem
+        {
+            public string mess { get; set; }
+        }
+
         public ChatWindow()
         {
             InitializeComponent();
@@ -35,8 +40,9 @@ namespace Terminal.Windows
         private void btnSendMes_Click(object sender, RoutedEventArgs e)
         {
             string mesagge = txtYourMes.Text;
+
+            textToReceive.Items.Add(new MyItem { mess = txtYourMes.Text });
             txtYourMes.Clear();
-            txtChat.Text += mesagge+"\n";
             MessageBox.Show("Nice!");
         }
     }
