@@ -12,41 +12,39 @@
             <StackPanel Style="{DynamicResource StackPanelStyle}" Margin="10,5,10,0">
                 <Label x:Name="tbTimeChatWin" Width="755" Content="{Binding Source={x:Static sys:DateTime.Now}}"
                        Style="{DynamicResource LabelStyle}" Margin="0,0,6,0"/>
+
+
             </StackPanel>
+            <Grid>
+                <Label x:Name="lblChat" Content="Your dialogue:"  Style="{DynamicResource LabelStyle}" Margin="23,29,489,239"  />
 
-            <Grid x:Name="gridChat"  DockPanel.Dock="Top">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                <ListView x:Name="textToReceive" Style="{DynamicResource ListViewStyle}"  Margin="327,29,0,171" Width="416">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn >
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Width="400" Style="{DynamicResource TextBlockStyle}" TextWrapping="Wrap" Height="70" Text="{Binding mess}" FontSize="15" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
-                <Label x:Name="lblChat" Content="Your dialogue:" Grid.Column="0"   Style="{DynamicResource LabelStyle}" Margin="10,30,10,83"  />
-                <TextBlock x:Name="txtChat" Grid.Column="1" Grid.ColumnSpan="2"                                                                                                           
-                           Width="480" Margin="10,30,0,10" 
-                               TextWrapping="Wrap"                                                       
-                               Style="{DynamicResource TextBlockStyle}">
-                </TextBlock>
-
-                <TextBox x:Name="txtYourMes" Grid.ColumnSpan="2" 
-                         Width="500" Margin="10,49,0,26" Grid.Row="1" 
-                         TextWrapping="Wrap"                      
-                         SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                <TextBox x:Name="txtYourMes" 
+                         Width="421" Margin="23,198,0,26" 
+                         TextWrapping="Wrap"                                            
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                          Style="{DynamicResource TextBoxStyle}"/>
 
-                <Button x:Name="btnSendMes" Grid.Column="2" Grid.Row="1" Click="btnSendMes_Click" 
-                        Style="{DynamicResource ButtonStyle}" Height="Auto" Margin="29,49,25,26" Width="Auto">
+                <Button x:Name="btnSendMes"  Click="btnSendMes_Click" 
+                        Style="{DynamicResource ButtonStyle}" Height="Auto" Margin="485,198,29,26" Width="Auto">
                     <StackPanel>
                         <TextBlock Text="Send message" Style="{DynamicResource TextBlockBtnStyle}"/>
                     </StackPanel>
                 </Button>
-
             </Grid>
         </DockPanel>
     </Border>

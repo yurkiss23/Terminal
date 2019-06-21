@@ -6,13 +6,16 @@
         xmlns:local="clr-namespace:Terminal.Windows"
         mc:Ignorable="d"
         Title="KR" Height="347.826" Width="492.391">
-    <Grid>
-        <TextBox x:Name="number" Margin="74,94,204,184" TextChanged="number_TextChanged" Width="206"/>
-        <ComboBox x:Name="currency" Margin="323,100,77,190" SelectionChanged="currency_SelectionChanged">
-            <ComboBoxItem x:Name="USD" Content="USD"/>
-            <ComboBoxItem x:Name="EUR"  Content="EUR"/>
-            <ComboBoxItem x:Name="RUB"  Content="RUB"/>
-        </ComboBox>
-        <Label x:Name="result" HorizontalContentAlignment="Center" Margin="115,199,114,44" FontSize="20"/>
-    </Grid>
+    <Border Style="{DynamicResource BorderStyle}" >
+        <Grid>
+            <Label Style="{DynamicResource LabelStyle}" HorizontalContentAlignment="Center" Margin="65,10,62,223" Content="Currency Convertor" FontSize="24" FontWeight="Bold" />
+            <TextBox  x:Name="number" Style="{DynamicResource TextBoxStyle}" Margin="65,100,0,152" TextChanged="number_TextChanged" Width="192"/>
+            <ComboBox x:Name="currency" Style="{DynamicResource ComboBoxStyle}"  Margin="323,100,62,152" SelectionChanged="currency_SelectionChanged">
+                <ComboBoxItem x:Name="USD" Content="USD"/>
+                <ComboBoxItem x:Name="EUR"  Content="EUR"/>
+                <ComboBoxItem x:Name="RUB"  Content="RUB"/>
+            </ComboBox>
+            <Label x:Name="result" Style="{DynamicResource LabelStyle}" HorizontalContentAlignment="Center" Margin="115,199,114,44" FontSize="20"/>
+        </Grid>
+    </Border>
 </Window>
